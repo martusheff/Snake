@@ -2,16 +2,15 @@ import pygame
 import time
 import random
 
-
-#Init PyGame
+# Init PyGame
 pygame.init()
 
-#Colors
-white = (255,255,255)
-black = (0,0,0)
-red = (255,0,0)
+# Colors
+white = (255, 255, 255)
+black = (0, 0, 0)
+red = (255, 0, 0)
 green = (0, 255, 0)
-orange = (255,165,0)
+orange = (255, 165, 0)
 
 width, height = 600, 400
 
@@ -26,20 +25,23 @@ snake_speed = 15
 message_font = pygame.font.SysFont('ubuntu', 30)
 score_font = pygame.font.SysFont('ubuntu', 25)
 
+
 def print_score(score):
     text = score_font.render("Score: " + str(score), True, green)
-    game_display.blit(text, [0,0])
+    game_display.blit(text, [0, 0])
+
 
 def draw_snake(snake_size, snake_pixels):
     for pixel in snake_pixels:
         pygame.draw.rect(game_display, green, [pixel[0], pixel[1], snake_size, snake_size])
 
+
 def run_game():
     game_over = False
     game_close = False
 
-    x = width/2
-    y = height/2
+    x = width / 2
+    y = height / 2
 
     x_speed = 0
     y_speed = 0
@@ -91,13 +93,13 @@ def run_game():
         game_display.fill(black)
         pygame.draw.rect(game_display, red, [target_x, target_y, snake_size, snake_size])
 
-        snake_pixels.append([x,y])
+        snake_pixels.append([x, y])
 
         if len(snake_pixels) > snake_length:
             del snake_pixels[0]
 
         for pixel in snake_pixels[:-1]:
-            if pixel == [x,y]:
+            if pixel == [x, y]:
                 game_close = True
 
         draw_snake(snake_size, snake_pixels)
@@ -112,9 +114,8 @@ def run_game():
 
         clock.tick(snake_speed)
 
-
-
     pygame.quit()
     quit()
+
 
 run_game()
